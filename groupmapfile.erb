@@ -1,0 +1,15 @@
+<%-
+@pools.each do | pool |
+  @vo_name=pool['vo']
+  @pool_name=pool['name']
+-%>
+<% if pool.has_key?('role_voms') -%>
+"/<%=@vo_name%>/Role=<%=pool['role_voms']%>/Capability=NULL" .<%=@pool_name%>
+"/<%=@vo_name%>/Role=<%=pool['role_voms']%>" .<%=@pool_name%>
+<% else -%>
+"/<%=@vo_name%>/Role=NULL/Capability=NULL" .<%=@pool_name%>
+"/<%=@vo_name%>" .<%=@pool_name%>
+<% end -%>
+<%-
+end
+-%>
